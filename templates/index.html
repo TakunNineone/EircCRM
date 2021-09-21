@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+    body {
+        font-family: "Roboto", sans-serif;
+        font-size: 18px;
+    }
+
+    .head_text {
+        color: white;
+    }
+
+    .card {
+        box-shadow: 0 16px 48px #efefef;
+    }
+</style>
+
+<header class="masthead">
+
+</header>
+<div class="container">
+    <div class="row">
+        <!-- Blog Entries Column -->
+        <div class="col-md-8 mt-3 left">
+            {% for case in cases_list %}
+            <div class="card mb-4">
+                <div class="card-body">
+                    {% if case.task_status_id < 10 %}
+                        <h4 class="card-title">{{ case.title }}</h4>
+                        <p class="card-text text-muted h6">{{ case.created_on}} | {{ case.task_status}} </p>
+                        <p class="card-text">{{case.content|slice:":200" }}</p>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{%endblock%}
